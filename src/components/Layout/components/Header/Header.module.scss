@@ -1,4 +1,9 @@
 .wrapper {
+    --search-border-radius: 92px;
+    --search-height: 46px;
+    --search-top-spacer: 9px;
+    --search-right-spacer: 52px;
+
     width: 100%;
     height: var(--default-layout-header-height);
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
@@ -8,5 +13,93 @@
 
 .inner {
     width: var(--default-layout-header-width);
+    padding: 0 24px 0 20px;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    width: 415px;
+    height: var(--search-height);
+    background-color: rgba(22, 24, 35, 0.06);
+    border: 1.5px solid transparent;
+    border-radius: var(--search-border-radius);
+    padding: 0 0 0 16px;
+
+    input {
+        flex: 1;
+        height: 100%;
+        font-size: 1.6rem;
+        color: var(--input-color);
+        background-color: transparent;
+        caret-color: var(--primary);
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: #161823bf;
+    }
+
+    input:not(:placeholder-shown) ~ .clear {
+        display: block;
+    }
+
+    &::after {
+        position: absolute;
+        content: '';
+        width: 1px;
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        top: var(--search-top-spacer);
+        right: var(--search-right-spacer);
+        background-color: #1618231f;
+    }
+
+    &:focus-within {
+        border: 1.5px solid #16182333;
+    }
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: var(--search-right-spacer);
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 12px;
+    font-size: 1.6rem;
+    color: #16182357;
+}
+
+.clear,
+.loading {
+    display: none;
+}
+
+.search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 100%;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    font-size: 1.9rem;
+    color: #16182357;
+
+    &:hover {
+        cursor: pointer;
+        background: #16182308;
+    }
+
+    &:active {
+        background: #1618230f;
+    }
 }
